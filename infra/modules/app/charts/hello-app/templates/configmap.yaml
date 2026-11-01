@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-html
+  labels:
+    {{- include "hello-app.labels" . | nindent 4 }}
+data:
+  index.html: |
+    <!doctype html>
+    <html lang="es">
+    <head><meta charset="utf-8"><title>{{ .Release.Name }}</title></head>
+    <body style="font-family:sans-serif;text-align:center;margin-top:15vh">
+      <h1>{{ .Values.message }}</h1>
+      <p>Release: {{ .Release.Name }} · Namespace: {{ .Release.Namespace }} · Chart: {{ .Chart.Version }}</p>
+    </body>
+    </html>

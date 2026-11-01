@@ -1,0 +1,30 @@
+replicaCount: 2
+
+image:
+  repository: docker.io/nginxinc/nginx-unprivileged   # multi-arch image (x86 and ARM)
+  tag: "1.27-alpine"
+  pullPolicy: IfNotPresent
+
+containerPort: 8080
+
+message: "Hola desde OKE"
+
+service:
+  type: LoadBalancer
+  port: 80
+  annotations:
+    # OCI flexible Load Balancer (10 Mbps, the minimum)
+    oci.oraclecloud.com/load-balancer-type: "lb"
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "10"
+    # Network rules are already created by Terraform in step 1
+    service.beta.kubernetes.io/oci-load-balancer-security-list-management-mode: "None"
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi

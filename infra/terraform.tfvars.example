@@ -1,0 +1,8 @@
+region           = "us-ashburn-1"
+compartment_ocid = "ocid1.compartment..."
+prefix           = "demo"
+api_allowed_cidr = "0.0.0.0/0"
+tenancy_ocid     = "ocid1.tenancy.oc1..."
+user_ocid        = "ocid1.user.oc1..."
+fingerprint      = "aa:bb:cc:..."
+private_key_path = "C:/path/to/your-private-key.pem"
